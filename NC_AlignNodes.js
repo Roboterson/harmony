@@ -68,6 +68,8 @@ function NC_AlignNodes(horizontal) {
 
     // start the undo stack
     scene.beginUndoRedoAccum("Align Nodes");
+    // center line of the "root" node
+    offset = node.width(alignedNodes[0])/2;
 
     // Now go through and place every node, starting with the second one.
     for (i = 1; i < alignedNodes.length; ++i) {
@@ -91,7 +93,8 @@ function NC_AlignNodes(horizontal) {
             prevPos = node.coordY(cNode);
             // figure out where the current node should be placed.
             newPosY = prevPos;
-            newPosX = startX;
+            // move to align centers
+            newPosX = startX + offset - (node.width(cNode)/2);
         }
 
 
